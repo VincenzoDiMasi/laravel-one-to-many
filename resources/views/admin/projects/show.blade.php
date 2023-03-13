@@ -48,4 +48,8 @@
         <a href="{{url('admin/projects') }}" class="btn btn-primary"><i class="fa-solid fa-circle-left me-1"></i>Back to Projects</a>
     </div> --}}
 </div>
+
+@section('scripts')
+        
+@endsection
 @endsection

@@ -30,11 +30,27 @@
 
 
         @include('includes.navbar')
+        @include('includes.alert')
+        @include('includes.validation')
 
         <main class="container">
             @yield('content')
         </main>
     </div>
+
+    @yield('scripts')
+
+    <script>
+        const deleteForms = document.querySelectorAll('.deleteForm');
+        
+        deleteForms.forEach(form => {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const hasConfirmed = confirm("Sei sicuro di voler cancellare questo elemento?");
+                if(hasConfirmed) form.submit();
+            })
+        });
+    </script>
 </body>
 
 </html>
