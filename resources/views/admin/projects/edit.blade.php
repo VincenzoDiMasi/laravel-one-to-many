@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Edit')
 @section('content')
 <body>
 
@@ -11,7 +11,9 @@
             </h1>
         </header>
 
-        <form action="{{route('admin.projects.update', $project->id)}}" method="POST" class="text-center" enctype="multipart/form-data">
+        @include('includes.form')
+
+        {{-- <form action="{{route('admin.projects.update', $project->id)}}" method="POST" class="text-center" enctype="multipart/form-data">
             @method('PUT')
             @csrf
 
@@ -40,6 +42,16 @@
                     <label for="techonologies_used" class="form-label">Technlogies used </label>
                     <input type="text" class="form-control" id="techonologies_used" placeholder="Inserisci le tecnologie utilizzate" name="techonologies_used" value="{{old('techonologies_used', $project->techonologies_used)}}" required>
                 </div>
+
+                <div class="col-4 mb-3">
+                    <label for="type_id" class="form-label">Type </label>
+                    <select class="form-select" name="type_id" id="type_id" aria-label="Default select example">
+                        <option value="">No Type</option>
+                        @foreach ($types as $type)
+                            <option @if ($project->type_id == $type->id) selected @endif value="{{$type->id}}">{{$type->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
         </div>
 
         <div class="buttons d-flex justify-content-between my-4">
@@ -52,7 +64,7 @@
           
        </div>
 
-        </form>
+        </form> --}}
     </div>
 </body>
 

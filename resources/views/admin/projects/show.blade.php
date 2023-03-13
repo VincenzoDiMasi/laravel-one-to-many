@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Details')
 @section('content')
 
 <header>
@@ -19,8 +19,12 @@
               <h2 class="card-title mb-4">{{$project->title}}</h2>
               <h4 class="mb-3">Description:</h4>
               <p class="card-text">{{$project->description}}</p>
-              <h4 class="mb-3">Techonolgies:</h4>
+              <h4 class="mb-3">Technolgies:</h4>
               <p class="card-text">{{$project->techonologies_used}}</p>
+              @if ($project->type)
+              <h4 class="mb-3">Type:</h4>
+              <span class="badge">{{$project->type->name}}</span>
+              @endif
             </div>
           </div>
         </div>

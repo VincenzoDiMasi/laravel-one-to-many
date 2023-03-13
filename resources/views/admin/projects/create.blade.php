@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Add')
 @section('content')
 <body>
 
@@ -11,7 +11,9 @@
             </h1>
         </header>
 
-        <form action="{{route('admin.projects.store')}}" method="POST" class="text-center" enctype="multipart/form-data">
+        @include('includes.form')
+
+        {{-- <form action="{{route('admin.projects.store')}}" method="POST" class="text-center" enctype="multipart/form-data">
             @csrf
 
             <div class="row">
@@ -51,7 +53,7 @@
            
         </div>
 
-        </form>
+        </form> --}}
     </div>
 </body>
 
