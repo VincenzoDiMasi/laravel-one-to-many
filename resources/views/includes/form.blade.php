@@ -26,7 +26,7 @@
 
         <div class="col-6 mb-3">
             <label for="full_code" class="form-label"> Project link </label>
-            <input type="url" class="form-control" id="full_code" placeholder="Inserisci il link al progetto" name="full_code" value="{{old('project_link', $project->project_link)}}">
+            <input type="url" class="form-control" id="full_code" placeholder="Inserisci il link al progetto" name="project_link" value="{{old('project_link', $project->project_link)}}">
         </div>
 
         <div class="col-6 mb-3">

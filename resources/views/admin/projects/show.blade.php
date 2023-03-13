@@ -21,10 +21,11 @@
               <p class="card-text">{{$project->description}}</p>
               <h4 class="mb-3">Technolgies:</h4>
               <p class="card-text">{{$project->techonologies_used}}</p>
-              @if ($project->type)
+              {{-- @if ($project->type) --}}
               <h4 class="mb-3">Type:</h4>
-              <span class="badge">{{$project->type->name}}</span>
-              @endif
+              {{-- @dd($project) --}}
+              <span class="badge text-black">{{$project->type->name}} </span>
+              {{-- @endif --}}
             </div>
           </div>
         </div>

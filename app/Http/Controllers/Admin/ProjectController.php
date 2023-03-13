@@ -42,7 +42,14 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => ['string', 'required', 'unique:projects', 'max:50'],
+            'image' => ['file', 'required'],
+            'description' => ['string', 'required'],
+            'project_link' => ['string', 'required', 'unique:projects',],
+            'techonologies_used' => ['string', 'required'],
+        ]);
+
         $data = $request->all();
 
         $project = new Project();
@@ -56,7 +63,7 @@ class ProjectController extends Controller
 
         $project->save();
 
-        return to_route('admin.projects.index');
+        return to_route('admin.projects.index')->with('type', 'success')->with('msg', "Il Progetto $project->title è stato creato con successo.");
     }
 
     /**
@@ -84,31 +91,35 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        //dd($request->all());
-        
+        $request->validate([
+            'title' => ['string', 'required', 'max:50'],
+            'image' => ['file', 'required'],
+            'description' => ['string', 'required'],
+            'project_link' => ['string', 'required',],
+            'techonologies_used' => ['string', 'required'],
+        ]);
 
         $data = $request->all();
 
         if (Arr::exists($data, 'image')) {
-            if($project->image) Storage::delete($project->image);
-
+            if ($project->image) Storage::delete($project->image);
             $img_url = Storage::put('projects', $data['image']);
             $data['image'] = $img_url;
         }
 
         $project->update($data);
 
-        return redirect()->route('admin.projects.show', $project->id);
+        return redirect()->route('admin.projects.show', $project->id)->with('type', 'warning')->with('msg', "Il Progetto $project->title è stato modificato con successo.");
     }
-
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Project $project)
     {
-        //
+        if ($project->image) Storage::delete($project->image);
+
         $project->delete();
 
-        return to_route('admin.projects.index');
+        return to_route('admin.projects.index')->with('type', 'danger')->with('msg', "Il Progetto $project->title è stato eliminato con successo.");
     }
 }
